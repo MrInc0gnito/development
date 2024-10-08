@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eaglercraft Launcher</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #42a5f5; /* Material Design Blue */
+            color: white;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eaglercraft</h1>
+        <p>Click the button below to launch the game:</p>
+        <a class="waves-effect waves-light btn" onclick="launchGame()">Start Game</a>
+    </div>
+
+    <script>
+        function launchGame() {
+            const url = 'https://raw.githubusercontent.com/MrInc0gnito/development/refs/heads/main/EaglercraftX_1.8_u39_Offline_Signed%20(1).html';
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(htmlContent => {
+                    const newTab = window.open('about:blank', '_blank');
+                    if (newTab) {
+                        newTab.document.write(htmlContent);
+                        newTab.document.close(); // Close the document to render the content
+                        window.location.href = 'https://scratch.mit.edu'; // Redirect current tab
+                    } else {
+                        console.error('Failed to open new tab. Please allow pop-ups for this site.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching Eaglercraft HTML:', error);
+                });
+        }
+    </script>
+
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
