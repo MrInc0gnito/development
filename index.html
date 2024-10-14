@@ -37,9 +37,10 @@
 
     <script>
         function launchGame() {
-            const url = 'https://raw.githubusercontent.com/MrInc0gnito/development/refs/heads/main/crafter.html';
+            const rawUrl = 'https://raw.githubusercontent.com/MrInc0gnito/development/refs/heads/main/crafter.html';
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(rawUrl)}`;
             
-            fetch(url)
+            fetch(proxyUrl)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok: ' + response.statusText);
